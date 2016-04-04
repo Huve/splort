@@ -1,12 +1,12 @@
-# TODO
-# Use Model-View-Controller Architecture for user interaction
-# Class Game()
-# Class GameScreen()
-# Etc.
+#!/usr/bin/python
+#
+# April 3 2016
+
 import splort_game
 import game_screen
 
 def run_game():
+    """Runs the Splort game."""
     game = splort_game.Game()
     print "Game running."
 
