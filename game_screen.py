@@ -13,6 +13,8 @@ class GameScreen():
         self.screen = display.set_mode((1088, 768))
         self.coord = (3000,5000)
         self.draw_background(self.coord)
+        self.player_image = pygame.image.load('images/m_char.png')
+        self.draw_layers()
         pygame.display.flip()
         
 
@@ -32,9 +34,17 @@ class GameScreen():
                                  )
 
 
-    def draw_player(self, coord):
-        pass
+    def draw_player(self, coord=(512, 352)):
+        """Draws the player in the center.
 
+        Args:
+            coord: pixel coordinates of the player.
+        """
+        self.screen.blit(self.player_image, coord)
 
     def draw_title_screen(self):
         pass
+
+    def draw_layers(self):
+        self.draw_background(self.coord)
+        self.draw_player()
