@@ -11,7 +11,9 @@ class RegionMap():
         self.h = display.Info().current_h
         self.screen = screen
         self.tiles = ["dirt_1",
-                      "grass_1"
+                      "grass_1",
+                      "grass_2",
+                      "grass_3"
             ]
         self.region = self.generate_region(map_data)
 
@@ -32,6 +34,7 @@ class RegionMap():
         else:
             pass
         return region
+
 
     def get_tiles(self, pixel_coord):
         """Returns the tiles that should be shown on the screen.
