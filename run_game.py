@@ -8,7 +8,6 @@ def run_game():
     """Runs the Splort game."""
     game = splort_game.Game()
     game.run()
-    print "Game running."
 
 def main():
     run_game()

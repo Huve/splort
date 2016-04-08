@@ -10,8 +10,7 @@ import sys
 class Game():
     """Game class that stores what is occurring during the game."""
     def __init__(self):
-        self.screen = game_screen.GameScreen()
-        self.bg = self.screen.draw_background()
+        self.screen = game_screen.GameScreen(pygame.display)
         self.start_game()
 
     def start_game(self):
