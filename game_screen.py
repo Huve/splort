@@ -3,6 +3,7 @@
 # April 3 2016
 
 import camera
+from camera import complex_camera
 from camera import simple_camera
 import pygame
 import region_map
@@ -16,12 +17,13 @@ class GameScreen():
         self.entities = pygame.sprite.Group()
         self.screen = display.set_mode((w, h))
         self.region = region_map.RegionMap(self, game, self.display)
-        self.coord = (3000,5000)
+        self.camera = camera.Camera(complex_camera, 
+            len(self.region.region[0])*self.tile_size, 
+            len(self.region.region)*self.tile_size)
         self.player = player
         self.player.image = pygame.image.load('images/m_char.png')
         self.player.image.convert()
         self.entities.add(player)
-        self.camera = camera.Camera(simple_camera, len(self.region.region[0]), len(self.region.region))
         self.draw_layers()
         pygame.display.flip()
        
