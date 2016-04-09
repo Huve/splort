@@ -5,10 +5,10 @@ class GroundBlock(Entity):
     def __init__(self, a, x, y):
         Entity.__init__(self)
         self.image_map = {
-        "a":"images/dirt_1.png",
-        "b":"images/grass_1.png",
-        "c":"images/grass_2.png",
-        "d":"images/grass_3.png"}
+        "a":"images/dirt_2.png",
+        "b":"images/grass_6.png",
+        "c":"images/grass_6.png",
+        "d":"images/grass_6.png"}
         
         self.image = pygame.Surface((64, 64))
         self.image.convert()
