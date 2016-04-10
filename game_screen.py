@@ -17,7 +17,7 @@ class GameScreen():
         self.entities = pygame.sprite.Group()
         self.entity_layer_1 = pygame.sprite.Group()
         self.screen = display.set_mode((w, h))
-        self.bg = pygame.image.load("images/background.png")
+        #self.bg = pygame.image.load("images/background.png")
         self.region = region_map.RegionMap(self, game, self.display)
         self.camera = camera.Camera(complex_camera, 
             len(self.region.region[0])*self.tile_size, 
