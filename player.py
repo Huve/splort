@@ -33,7 +33,7 @@ class Player(Entity):
             left: boolean referring to keypress left.
             right: boolean referring to keypress right.
             running: boolean referring to spacebar press.
-            layer_1: list of sprites that player can collide with
+            layer_1: list of sprites that player can collide with.
         """
         if direction == "up":
             self.yvel = -2

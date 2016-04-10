@@ -28,10 +28,11 @@ class Block(Entity):
         "2":"images/bush_1.png"
         }
         
-        self.image = pygame.Surface((64, 64))
-        self.image.convert()
+        #self.image = pygame.Surface((64, 64))
+       # self.image.convert()
         self.image = pygame.image.load(self.image_map[a])
         self.rect = pygame.Rect(x, y, 64, 64)
 
     def update(self):
         pass
+        

@@ -4,6 +4,7 @@
 
 import random
 from ground_block import GroundBlock, Block
+from npc import NPC
 
 class RegionMap():
     """A map of a region within the game."""
@@ -15,10 +16,12 @@ class RegionMap():
         self.tiles = ["a",
                       "b",
                       "c",
-                      "d"]
+                      "d",
+                      "e"]
         self.blocks = ["1",
-                       " ", " ", " ", " ", " ", " ",
-                       "2"]
+                       " ", " ", " ", " ", " ", " "," ", " ", " ",
+                       "2",
+                       "3"]
         self.layer_1 = self.generate_block_layer(None)
 
 
@@ -71,7 +74,11 @@ class RegionMap():
                 for _ in range(100):
                     i = random.choice(self.blocks)
                     row += i
-                    if i != " ":
+                    if i == "3":
+                        b = NPC(i, x, y)
+                        blocks.append(b)
+                        self.screen.entity_layer_1.add(b)
+                    elif i != " ":
                         b = Block(i, x, y)
                         blocks.append(b)
                         self.screen.entity_layer_1.add(b)

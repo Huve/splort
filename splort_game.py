@@ -25,6 +25,8 @@ class Game():
         self.direction = None
         self.current_press = None
         self.layer_1 = self.screen.entity_layer_1
+        self.layer_2 = self.screen.entity_layer_2
+        
         
     def run(self):
         while 1:
