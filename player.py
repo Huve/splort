@@ -20,15 +20,15 @@ class Player(Entity):
         
     def update(self, up, down, left, right, running, platforms, layer_1):
         if up:
-            self.yvel = -8
+            self.yvel = -2
         if down:
-            self.yvel = 8
+            self.yvel = 2
         if running:
-            self.xvel = 12
+            self.xvel = 2
         if left:
-            self.xvel = -8
+            self.xvel = -2
         if right:
-            self.xvel = 8
+            self.xvel = 2
         if not(left or right or up or down):
             self.xvel = 0
             self.yvel = 0
