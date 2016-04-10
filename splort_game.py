@@ -23,6 +23,7 @@ class Game():
         self.right = False
         self.running = False
         self.ground_blocks = []
+        self.collision_layer =[]
         
     def run(self):
         while 1:
@@ -49,7 +50,7 @@ class Game():
                     self.right = False
                 if e.type == KEYUP and e.key == K_LEFT:
                     self.left = False
-            self.player.update(self.up, self.down, self.left, self.right, self.running, self.ground_blocks)
+            self.player.update(self.up, self.down, self.left, self.right, self.running, self.ground_blocks, self.collision_layer)
             self.screen.draw_layers() 
 
             

@@ -18,7 +18,7 @@ class Player(Entity):
         self.rect = pygame.Rect(x, y, 64, 64)
         
         
-    def update(self, up, down, left, right, running, platforms):
+    def update(self, up, down, left, right, running, platforms, layer_1):
         if up:
             self.yvel = -8
         if down:

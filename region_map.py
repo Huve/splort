@@ -3,7 +3,7 @@
 # April 3 2016
 
 import random
-import ground_block
+from ground_block import GroundBlock, Block
 
 class RegionMap():
     """A map of a region within the game."""
@@ -15,9 +15,12 @@ class RegionMap():
         self.tiles = ["a",
                       "b",
                       "c",
-                      "d"
-            ]
+                      "d"]
+        self.blocks = ["1",
+                       " ", " ", " ", " ", " ", " ",
+                       "2"]
         self.region = self.generate_region(map_data)
+        self.layer_1 = self.generate_block_layer(None)
 
 
     def generate_region(self, map_data):
@@ -32,17 +35,13 @@ class RegionMap():
         ground_blocks = []
         x = y = 0
         if map_data == None:
-            #region = {
-                #i:{j:self.tiles[random.randint(0, len(self.tiles)-1)] for j in range(100)} for i in range(200)
-                #}
-            region = [
-            ]
+            region = []
             for _ in range(100):
                 row = ""
                 for _ in range(100):
                     i = random.choice(self.tiles)
                     row += i
-                    g = ground_block.GroundBlock(i, x, y)
+                    g = GroundBlock(i, x, y)
                     ground_blocks.append(g)
                     self.screen.entities.add(g)
                     x+=64
@@ -55,26 +54,27 @@ class RegionMap():
         return region
 
 
-    def get_tiles(self, pixel_coord):
-        """Provides the tiles that should be shown on the screen.
-
-        Args:
-            coord: tuple of coordinates the player exists on.
-
-        Returns:
-            view: the tiles that should be displayed on the screen by pixel.
-        """
-            
-        view = {}
-        for i in range(self.w / self.screen.tile_size + 2):
-            for j in range(self.h / self.screen.tile_size + 2):
-                x = i + (pixel_coord[0] / self.screen.tile_size) - 9
-                y = j + (pixel_coord[1] / self.screen.tile_size) - 7
-                try:
-                    view[i][j] = self.region[x][y]
-                except KeyError:
-                    view[i] = {}
-                    view[i][j] = self.region[x][y]
-        return view
+    def generate_block_layer(self, block_data):
+        blocks = []
+        x = y = 0
+        if block_data == None:
+            region = []
+            for _ in range(100):
+                row = ""
+                for _ in range(100):
+                    i = random.choice(self.blocks)
+                    row += i
+                    if i != " ":
+                        b = Block(i, x, y)
+                        blocks.append(b)
+                        self.screen.entity_layer_1.add(b)
+                    x+=64
+                y+=64
+                x=0
+                region.append(row)
+        else:
+            pass
+        self.game.blocks = blocks
+        return region
 
         
