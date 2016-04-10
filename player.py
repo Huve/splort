@@ -10,15 +10,21 @@ class Entity(pygame.sprite.Sprite):
 
         
 class Player(Entity):
-
+    """Player class Entity."""
     def __init__(self, x, y):
         Entity.__init__(self)
         self.xvel = 0
         self.yvel = 0
         self.rect = pygame.Rect(x, y, 64, 64)
+        self.player_class = ""
+        self.health = 10
+        self.mana = 10
+        self.strength = 10
+        self.intelligence = 10
+        self.dexterity = 10
         
         
-    def update(self, up, down, left, right, running, platforms, layer_1):
+    def update(self, up, down, left, right, running, layer_1):
         if up:
             self.yvel = -2
         if down:
@@ -32,29 +38,22 @@ class Player(Entity):
         if not(left or right or up or down):
             self.xvel = 0
             self.yvel = 0
-        # increment in x direction
         self.rect.left += self.xvel
-        # do x-axis collisions
-        # self.collide(self.xvel, 0, platforms)
-        # increment in y direction
         self.rect.top += self.yvel
-        #self.collide(0, self.yvel, platforms)
+        self.collide(self.xvel, 0, layer_1)
+        self.collide(0, self.yvel, layer_1)
 
         
-    """def collide(self, xvel, yvel, platforms):
-        for p in platforms:
+    def collide(self, xvel, yvel, layer_1):
+        for p in layer_1:
             if pygame.sprite.collide_rect(self, p):
-                if isinstance(p, ExitBlock):
-                    pygame.event.post(pygame.event.Event(QUIT))
+               # if isinstance(p, GroundBlock):
+                   # pass  # TODO(huve): add doors to this ExitBlock
                 if xvel > 0:
                     self.rect.right = p.rect.left
-                    print "collide right"
                 if xvel < 0:
                     self.rect.left = p.rect.right
-                    print "collide left"
                 if yvel > 0:
                     self.rect.bottom = p.rect.top
-                    self.onGround = True
-                    self.yvel = 0
                 if yvel < 0:
-                    self.rect.top = p.rect.bottom"""
+                    self.rect.top = p.rect.bottom

@@ -19,7 +19,6 @@ class RegionMap():
         self.blocks = ["1",
                        " ", " ", " ", " ", " ", " ",
                        "2"]
-        self.region = self.generate_region(map_data)
         self.layer_1 = self.generate_block_layer(None)
 
 
@@ -55,6 +54,14 @@ class RegionMap():
 
 
     def generate_block_layer(self, block_data):
+        """Randomly generates blocks on the background for testing.
+        
+        Args:
+            block_data: a list of strings which correspond to blocks.
+        
+        Returns:
+            region: the concatenated list of random strings of blocks for the map.
+        """
         blocks = []
         x = y = 0
         if block_data == None:
@@ -74,7 +81,6 @@ class RegionMap():
                 region.append(row)
         else:
             pass
-        self.game.blocks = blocks
         return region
 
         

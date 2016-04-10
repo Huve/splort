@@ -12,18 +12,17 @@ class Game():
     """Game class that stores what is occurring during the game."""
     def __init__(self, w, h):
         pygame.init()
-        self.player = player.Player(1599,1500)
+        self.player = player.Player(1500,1500)
         self.screen = game_screen.GameScreen(self, pygame.display, self.player, w, h)
         self.clock = pygame.time.Clock()
-        self.clock.tick(60)
+        self.clock.tick(30)
         self.up = False
         self.right = False
         self.down = False
         self.left = False
         self.right = False
         self.running = False
-        self.ground_blocks = []
-        self.collision_layer =[]
+        self.layer_1 = self.screen.entity_layer_1
         
     def run(self):
         while 1:
@@ -50,7 +49,7 @@ class Game():
                     self.right = False
                 if e.type == KEYUP and e.key == K_LEFT:
                     self.left = False
-            self.player.update(self.up, self.down, self.left, self.right, self.running, self.ground_blocks, self.collision_layer)
+            self.player.update(self.up, self.down, self.left, self.right, self.running, self.layer_1)
             self.screen.draw_layers() 
 
             

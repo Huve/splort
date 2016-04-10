@@ -2,6 +2,7 @@ from player import Entity
 import pygame
 
 class GroundBlock(Entity):
+    """An entity that acts as a ground tile on the map."""
     def __init__(self, a, x, y):
         Entity.__init__(self)
         self.image_map = {
@@ -19,6 +20,7 @@ class GroundBlock(Entity):
         pass
         
 class Block(Entity):
+    """An entity that acts as a first layer (collision layer) tile on the map."""
     def __init__(self, a, x, y):
         Entity.__init__(self)
         self.image_map = {
