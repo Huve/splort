@@ -22,6 +22,8 @@ class Game():
         self.left = False
         self.right = False
         self.running = False
+        self.direction = None
+        self.current_press = None
         self.layer_1 = self.screen.entity_layer_1
         
     def run(self):
@@ -31,25 +33,20 @@ class Game():
                 if e.type == KEYDOWN and e.key == K_ESCAPE:
                     raise SystemExit, "ESCAPE"
                 if e.type == KEYDOWN and e.key == K_UP:
-                    self.up = True
+                    self.direction = "up"
                 if e.type == KEYDOWN and e.key == K_DOWN:
-                    self.down = True
+                    self.direction = "down"
                 if e.type == KEYDOWN and e.key == K_LEFT:
-                    self.left = True
+                    self.direction = "left"
                 if e.type == KEYDOWN and e.key == K_RIGHT:
-                    self.right = True
+                    self.direction = "right"
                 if e.type == KEYDOWN and e.key == K_SPACE:
                     self.running = True
 
-                if e.type == KEYUP and e.key == K_UP:
-                    self.up = False
-                if e.type == KEYUP and e.key == K_DOWN:
-                    self.down = False
-                if e.type == KEYUP and e.key == K_RIGHT:
-                    self.right = False
-                if e.type == KEYUP and e.key == K_LEFT:
-                    self.left = False
-            self.player.update(self.up, self.down, self.left, self.right, self.running, self.layer_1)
+                if e.type == KEYUP:
+                    if e.key == K_UP or e.key == K_DOWN or e.key == K_LEFT or e.key == K_RIGHT:
+                        self.direction = None
+            self.player.update(self.direction, self.layer_1)
             self.screen.draw_layers() 
 
             

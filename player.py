@@ -24,18 +24,30 @@ class Player(Entity):
         self.dexterity = 10
         
         
-    def update(self, up, down, left, right, running, layer_1):
-        if up:
+    def update(self, direction, layer_1):
+        """Update the player's position.
+        
+        Args:
+            up: boolean referring to keypress up.
+            down: boolean referring to keypress down.
+            left: boolean referring to keypress left.
+            right: boolean referring to keypress right.
+            running: boolean referring to spacebar press.
+            layer_1: list of sprites that player can collide with
+        """
+        if direction == "up":
             self.yvel = -2
-        if down:
+            self.xvel = 0
+        if direction == "down":
             self.yvel = 2
-        if running:
-            self.xvel = 2
-        if left:
+            self.xvel = 0
+        if direction == "left":
             self.xvel = -2
-        if right:
+            self.yvel = 0
+        if direction == "right":
             self.xvel = 2
-        if not(left or right or up or down):
+            self.yvel = 0
+        if direction not in ("right", "left", "up", "down"):
             self.xvel = 0
             self.yvel = 0
         self.rect.left += self.xvel
@@ -45,6 +57,13 @@ class Player(Entity):
 
         
     def collide(self, xvel, yvel, layer_1):
+        """Determine if player is colliding with objects
+        
+        Args:
+            xvel: speed on x axis.
+            yvel: speed on y axis.
+            layer_1: list of sprites that player can collide with.
+        """
         for p in layer_1:
             if pygame.sprite.collide_rect(self, p):
                # if isinstance(p, GroundBlock):
