@@ -39,7 +39,7 @@ class GameScreen():
         self.screen.blit(self.player.image, self.camera.apply(self.player))
         for e in self.entity_layer_1:
            self.screen.blit(e.image, self.camera.apply(e))
-        self.screen.blit(self.bg, (0,0), area=self.camera.state)
+        #self.screen.blit(self.bg, (0,0), area=self.camera.state)
         pygame.display.flip()
         pygame.display.update()
 
