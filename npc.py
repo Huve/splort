@@ -9,7 +9,7 @@ class NPC(Entity):
     def __init__(self, a, x, y):
         Entity.__init__(self)
         self.image_map = {
-        "3":"images/char_paladin_1.png"}
+        "3":"images/char_paladin_2.png"}
         self.sprite_sheet = pygame.image.load(self.image_map[a])
         self.sprite_sheet.set_clip(pygame.Rect(0, 0, 64 ,64))
         self.image_1 = self.sprite_sheet.subsurface(self.sprite_sheet.get_clip()) 
@@ -19,7 +19,11 @@ class NPC(Entity):
         self.image_3 = self.sprite_sheet.subsurface(self.sprite_sheet.get_clip()) 
         self.sprite_sheet.set_clip(pygame.Rect(192, 0, 64 ,64))
         self.image_4 = self.sprite_sheet.subsurface(self.sprite_sheet.get_clip()) 
-        self.images = [self.image_1, self.image_2, self.image_3, self.image_4]
+        self.sprite_sheet.set_clip(pygame.Rect(256, 0, 64 ,64))
+        self.image_5 = self.sprite_sheet.subsurface(self.sprite_sheet.get_clip()) 
+        self.sprite_sheet.set_clip(pygame.Rect(320, 0, 64 ,64))
+        self.image_6 = self.sprite_sheet.subsurface(self.sprite_sheet.get_clip()) 
+        self.images = [self.image_1, self.image_2, self.image_3, self.image_4, self.image_5, self.image_6]
         self.image = self.images[random.randint(0, 1)]
         self.image.convert()
         self.rect = pygame.Rect(x, y, 64, 64)
