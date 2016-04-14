@@ -21,7 +21,7 @@ class RegionMap():
         self.blocks = ["1",
                        " ", " ", " ", " ", " ", " "," ", " ", " ",
                        "2",
-                       "3"]
+                       "a"]
         self.layer_1 = self.generate_block_layer(None)
 
 
@@ -74,7 +74,7 @@ class RegionMap():
                 for _ in range(100):
                     i = random.choice(self.blocks)
                     row += i
-                    if i == "3":
+                    if i == "a":
                         b = NPC(i, x, y)
                         blocks.append(b)
                         self.screen.entity_layer_1.add(b)

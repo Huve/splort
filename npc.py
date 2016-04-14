@@ -6,26 +6,20 @@ import random
 class NPC(Entity):
 
     """An entity that acts as an NPC on the map."""
-    def __init__(self, a, x, y):
+    def __init__(self, race, x, y):
         Entity.__init__(self)
         self.image_map = {
-        "3":"images/char_paladin_2.png"}
-        self.sprite_sheet = pygame.image.load(self.image_map[a])
-        self.sprite_sheet.set_clip(pygame.Rect(0, 0, 64 ,64))
-        self.image_1 = self.sprite_sheet.subsurface(self.sprite_sheet.get_clip()) 
-        self.sprite_sheet.set_clip(pygame.Rect(64, 0, 64 ,64))
-        self.image_2 = self.sprite_sheet.subsurface(self.sprite_sheet.get_clip()) 
-        self.sprite_sheet.set_clip(pygame.Rect(128, 0, 64 ,64))
-        self.image_3 = self.sprite_sheet.subsurface(self.sprite_sheet.get_clip()) 
-        self.sprite_sheet.set_clip(pygame.Rect(192, 0, 64 ,64))
-        self.image_4 = self.sprite_sheet.subsurface(self.sprite_sheet.get_clip()) 
-        self.sprite_sheet.set_clip(pygame.Rect(256, 0, 64 ,64))
-        self.image_5 = self.sprite_sheet.subsurface(self.sprite_sheet.get_clip()) 
-        self.sprite_sheet.set_clip(pygame.Rect(320, 0, 64 ,64))
-        self.image_6 = self.sprite_sheet.subsurface(self.sprite_sheet.get_clip()) 
-        self.images = [self.image_1, self.image_2, self.image_3, self.image_4, self.image_5, self.image_6]
-        self.image = self.images[random.randint(0, 1)]
-        self.image.convert()
+            "a":"images/char_paladin_2.png"}
+        self.animation_key = {
+            "up": 0,
+            "right": 1,
+            "down": 2,
+            "left": 3
+            }
+        self.images = []
+        self.sprite_sheet = pygame.image.load(self.image_map[race])
+        self.load_walk_animation()
+        self.direction = "up"
         self.rect = pygame.Rect(x, y, 64, 64)
         self.hostile = False
         self.health = 10
@@ -34,12 +28,33 @@ class NPC(Entity):
         self.fps = 5
         self.frame_count = 0
 
+        
     def update(self):
+        """Update the sprite's location and animations."""
+        images = self.images[self.animation_key[self.direction]]
         self.frame_count +=1
         if self.frame_count % self.fps == 0:
             self.index += 1
-            if self.index >= len(self.images):
+            if self.index >= len(images):
                 self.index = 0
-            self.image = self.images[self.index]
+            self.image = images[self.index]
             if self.frame_count > 10000:
                 self.frame_count = 0
+                
+                
+    def load_walk_animation(self):
+        """Load the walking animations from the sprite sheet."""
+        sheet_dim = self.sprite_sheet.get_rect().size
+        cols = sheet_dim[0] / 64
+        rows = sheet_dim[1] / 64
+        for r in range(rows):
+            image_row = []
+            for c in range(cols):
+                self.sprite_sheet.set_clip(pygame.Rect(c*64, r*64, 64 ,64))
+                image = self.sprite_sheet.subsurface(self.sprite_sheet.get_clip())
+                image.convert()
+                image_row.append(image)
+            self.images.append(image_row)
+        self.image = self.images[0][0]
+        
+        
