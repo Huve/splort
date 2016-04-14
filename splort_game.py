@@ -12,6 +12,7 @@ class Game():
     """Game class that stores what is occurring during the game."""
     def __init__(self, w, h):
         pygame.init()
+        pygame.mixer.init()
         self.player = player.Player(1500,1500)
         self.screen = game_screen.GameScreen(self, pygame.display, self.player, w, h)
         self.clock = pygame.time.Clock()
@@ -26,7 +27,9 @@ class Game():
         self.current_press = None
         self.layer_1 = self.screen.entity_layer_1
         self.layer_2 = self.screen.entity_layer_2
-        
+        self.intro_music = "audio/splort_2.mp3"
+        pygame.mixer.music.load(self.intro_music)
+        pygame.mixer.music.play()
         
     def run(self):
         while 1:
