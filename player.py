@@ -15,7 +15,7 @@ class Player(Entity):
         Entity.__init__(self)
         self.xvel = 0
         self.yvel = 0
-        self.rect = pygame.Rect(x, y, 64, 64)
+        self.rect = pygame.Rect(x, y, 32, 64)
         self.player_class = ""
         self.health = 10
         self.mana = 10

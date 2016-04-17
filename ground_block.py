@@ -19,6 +19,7 @@ class GroundBlock(Entity):
     def update(self):
         pass
         
+        
 class Block(Entity):
     """An entity that acts as a first layer (collision layer) tile on the map."""
     def __init__(self, a, x, y):
@@ -30,7 +31,7 @@ class Block(Entity):
         #self.image = pygame.Surface((64, 64))
         self.image = pygame.image.load(self.image_map[a])
         self.image.convert()
-        self.rect = pygame.Rect(x, y, 64, 64)
+        self.rect = pygame.Rect(x+32, y, 64, 64)
 
     def update(self):
         pass

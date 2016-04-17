@@ -24,7 +24,7 @@ class GameScreen():
         self.region = region_map.RegionMap(self, game, self.display)
         self.camera = camera.Camera(complex_camera, self.total_width, self.total_height)
         self.player = player
-        self.player.image = self.display_player(self.player, "images/m_char.png")
+        self.player.image = self.display_player(self.player, "images/m_char2.png")
         self.players.add(player)
         self.draw_layers()
         pygame.display.flip()
