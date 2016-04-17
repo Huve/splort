@@ -31,7 +31,7 @@ class Block(Entity):
         #self.image = pygame.Surface((64, 64))
         self.image = pygame.image.load(self.image_map[a])
         self.image.convert()
-        self.rect = pygame.Rect(x+32, y, 64, 64)
+        self.rect = pygame.Rect(x, y, 64, 64)
 
     def update(self):
         pass

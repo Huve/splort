@@ -7,11 +7,14 @@ from camera import complex_camera
 from camera import simple_camera
 import pygame
 import region_map
+import game_ui
  
 class GameScreen():
     """Game Screen class that acts as a View for the user"""
     def __init__(self, game, display, player, w, h):
         self.tile_size = 64
+        self.w = w
+        self.h = h
         self.game = game
         self.display = display
         self.players = pygame.sprite.Group()
@@ -24,8 +27,10 @@ class GameScreen():
         self.region = region_map.RegionMap(self, game, self.display)
         self.camera = camera.Camera(complex_camera, self.total_width, self.total_height)
         self.player = player
-        self.player.image = self.display_player(self.player, "images/m_char2.png")
+        self.player.image = self.display_player(self.player, "images/m_char3.png")
         self.players.add(player)
+        self.ui = game_ui.GameUI(display, self.player)
+        
         self.draw_layers()
         pygame.display.flip()
        
@@ -37,6 +42,7 @@ class GameScreen():
         for e in self.entity_layer_1:
            e.update()
            self.screen.blit(e.image, self.camera.apply(e))
+        self.screen.blit(self.ui.layer, (0, 0))
         pygame.display.update()
         
         
@@ -45,6 +51,6 @@ class GameScreen():
         image.convert()
         return image
 
-
+        
     def animate_sprite(self, sprite, image):
         pass
